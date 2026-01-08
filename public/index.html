@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Next buses</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="header">
+      <h1>Next buses (114, 111, 164, 164K)</h1>
+      <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+
+    <div class="card">
+      <label>Address
+        <input id="address" value="Matinpuronkuja 1" />
+      </label>
+      <label>Radius (m)
+        <input id="radius" type="number" value="700" min="100" step="50" />
+      </label>
+      <button id="refresh">Refresh</button>
+      <div id="meta" class="muted"></div>
+    </div>
+
+    <div class="card">
+      <div id="status" class="muted"></div>
+      <ul id="list"></ul>
+    </div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
