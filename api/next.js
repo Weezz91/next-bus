@@ -9,6 +9,22 @@ export default async function handler(req, res) {
     const GEOCODE_URL = "https://api.digitransit.fi/geocoding/v1/search";
     const WANTED_LINES = new Set(["114", "111", "164", "164K", "164k"]);
 
+    const STOP_RULES = {
+  "111": ["Iirislahti"],
+  "114": ["Iirislahti"],
+  "164": ["Matinsolmu"],
+  "164K": ["Matinsolmu"],
+  "164k": ["Matinsolmu"]
+};
+
+function matchesStopRule(line, stopName) {
+  const rules = STOP_RULES[line];
+  if (!rules) return true; // jos ei sääntöä, näytä normaalisti
+  const name = (stopName || "").toLowerCase();
+  return rules.some(r => name.includes(r.toLowerCase()));
+}
+
+
     const address = String(req.query.address || "Matinpuronkuja 1");
     const radius = Number(req.query.radius || 700);
     const departuresPerStop = Number(req.query.n || 25);
@@ -139,12 +155,15 @@ export default async function handler(req, res) {
     }
     flattened.sort((a, b) => a.time.localeCompare(b.time));
 
+    const filteredResults = flattened.filter(r => matchesStopRule(r.line, r.stopName));
+    
     return res.status(200).json({
       addressUsed: geo.label,
       radius,
-      results: flattened.slice(0, 12)
+      results: filteredResults.slice(0, 12)
     });
   } catch (e) {
     return res.status(500).json({ error: e?.message || String(e) });
   }
 }
+
