@@ -57,4 +57,12 @@ body.dark .muted {
 
 body.dark .row {
   border-top: 1px solid #1e293b;
+
 }
+
+.h2 { font-size: 14px; margin: 14px 0 8px; }
+.tbl { width: 100%; border-collapse: collapse; }
+.tbl td { padding: 10px 0; border-top: 1px solid #eef0f3; vertical-align: top; }
+.tbl .colLine { width: 60px; font-weight: 700; }
+.tbl .muted { display: block; margin-top: 2px; }
+body.dark .tbl td { border-top: 1px solid #1e293b; }
