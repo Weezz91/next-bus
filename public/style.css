@@ -66,3 +66,27 @@ body.dark .row {
 .tbl .colLine { width: 60px; font-weight: 700; }
 .tbl .muted { display: block; margin-top: 2px; }
 body.dark .tbl td { border-top: 1px solid #1e293b; }
+
+.banner {
+  text-align: center;
+  margin: 6px 0 12px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ec4899; /* pinkki */
+}
+
+/* Vilkkuva / sykkivä animaatio */
+.blink {
+  animation: blinkFade 1.5s infinite;
+}
+
+@keyframes blinkFade {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Tumma tila */
+body.dark .banner {
+  color: #f472b6;
+}
